@@ -1,0 +1,9 @@
+# Archivos de configuración y credenciales
+.env
+config/*.json
+
+# Logs y caché
+logs/
+__pycache__/
+
+
