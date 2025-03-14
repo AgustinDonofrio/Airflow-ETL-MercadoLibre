@@ -7,15 +7,15 @@ This project implements a data pipeline using Apache Airflow to collect informat
 
 > **Note:** This exercise is based on a technical challenge found online, but has been modified by me to fit my learning process and understanding.
 
-## Requirements
+## Pipeline Description
 
-The pipeline gathers item information and saves it to a database, while also checking for high-revenue items and sending alerts via email. The pipeline runs daily.
+The pipeline gathers item information and saves it to a database, while also checking for high-priced items and sending alerts via email. The pipeline runs daily.
 
 ## API Endpoints Used
 
 - **List of categories**: [https://api-mercadolibre.com/sites/MLA/categories](https://api.mercadolibre.com/sites/MLA/categories)
 - **Specific category information**: [https://api.mercadolibre.com/categories/MLA1577](https://api.mercadolibre.com/categories/MLA1577)
-- **Search API for a given category**: [https://api-mercadolibre.com/sites/MLA/search?category=MLA1577#json](https://api.mercadolibre.com/sites/MLA/search?category=MLA1577#json)
+- **Search API for a given category**: [https://api.mercadolibre.com/sites/MLA/search?category=MLA1577#json](https://api.mercadolibre.com/sites/MLA/search?category=MLA1577#json)
 - **Specific item information**: [https://api.mercadolibre.com/items/MLA830173972](https://api.mercadolibre.com/items/MLA830173972)
 
 ## Tasks
@@ -30,13 +30,12 @@ Create an Airflow DAG that retrieves data from MercadoLibre's public API and sto
   - `"site_id"`
   - `"title"`
   - `"price"`
-  - `"sold_quantity"`
   - `"thumbnail"`
 - Store the extracted data in a database with an additional field `"created_date"`.
 
 ### Task 2: Alerting System
 
-Enhance the Airflow DAG to send an email alert when an item's revenue (`price * sold_quantity`) exceeds **7,000,000 $**.
+Enhance the Airflow DAG to send an email alert when an item's `price` exceeds **500.000,00 $**.
 
 - The email should contain details of all items meeting this condition.
 - The format of the email is flexible as long as it includes the necessary information.
@@ -66,15 +65,16 @@ Este proyecto implementa un pipeline de datos utilizando Apache Airflow para rec
 
 > **Nota:** Este ejercicio está basado en un desafío técnico encontrado en internet, pero ha sido modificado por mí para adaptarlo a mi proceso de aprendizaje y comprensión.
 
-## Requisitos
+## Descripción del Pipeline
 
-El pipeline extrae información de productos y la almacena en una base de datos. Además, verifica si algún artículo genera altos ingresos y envía alertas por correo electrónico. El proceso se ejecuta diariamente.
+El pipeline extrae información de productos y la almacena en una base de datos. Además, verifica si algún artículo tiene un precio muy alto y envía alertas por correo electrónico. El proceso se ejecuta diariamente.
+
 
 ## Endpoints de la API utilizados
 
 - **Lista de categorías**: [https://api-mercadolibre.com/sites/MLA/categories](https://api.mercadolibre.com/sites/MLA/categories)
 - **Información de una categoría específica**: [https://api.mercadolibre.com/categories/MLA1577](https://api.mercadolibre.com/categories/MLA1577)
-- **API de búsqueda por categoría**: [https://api-mercadolibre.com/sites/MLA/search?category=MLA1577#json](https://api.mercadolibre.com/sites/MLA/search?category=MLA1577#json)
+- **API de búsqueda por categoría**: [https://api.mercadolibre.com/sites/MLA/search?category=MLA1577#json](https://api.mercadolibre.com/sites/MLA/search?category=MLA1577#json)
 - **Información de un producto específico**: [https://api.mercadolibre.com/items/MLA830173972](https://api.mercadolibre.com/items/MLA830173972)
 
 ## Tareas
@@ -89,13 +89,12 @@ Crear un DAG de Airflow que obtenga datos de la API pública de MercadoLibre y l
   - `"site_id"`
   - `"title"`
   - `"price"`
-  - `"sold_quantity"`
   - `"thumbnail"`
 - Almacenar estos datos en una base de datos, agregando un campo adicional `"created_date"`.
 
 ### Tarea 2: Sistema de Alertas
 
-Ampliar el DAG de Airflow para enviar una alerta por correo electrónico cuando el ingreso de un producto (`price * sold_quantity`) supere **7,000,000 $**.
+Ampliar el DAG de Airflow para enviar una alerta por correo electrónico cuando el precio de un producto supere los **$ 500.000,00**.
 
 - El correo debe incluir los detalles de todos los productos que cumplan con esta condición.
 - El formato del correo es flexible siempre que contenga la información necesaria.
