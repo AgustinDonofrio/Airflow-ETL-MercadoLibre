@@ -6,4 +6,5 @@ config/*.json
 logs/
 __pycache__/
 
-
+# Archivos generado en runtime
+tmp/file.tsv
